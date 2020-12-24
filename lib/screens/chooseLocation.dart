@@ -31,7 +31,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
               SizedBox(width: 20.0),
               Text("Choose your location", style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.white70
+                color: Colors.white70,
               )
              )
             ],

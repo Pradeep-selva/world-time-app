@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_time_app/services/GetTime.dart';
 
 class Loading extends StatefulWidget{
 
@@ -8,7 +9,31 @@ class Loading extends StatefulWidget{
 
 class _LoadingState extends State<Loading> {
 
-  String loading = "";
+  bool loading = false;
+  String time = "";
+
+  @override
+  void initState() {
+    super.initState();
+    this.getTime();
+  }
+
+  void getTime() async {
+    this.toggleLoading();
+
+    try {
+      GetTime instance = GetTime(url: "Asia/Kolkata", flagUrl: "", location: "Kolkata");
+      await instance.fetchTime();
+
+      time = instance.time;
+    } finally {
+      this.toggleLoading();
+    }
+  }
+
+  void toggleLoading() => setState((){
+    loading = !loading;
+  });
 
   @override
   Widget build(BuildContext context){
@@ -17,10 +42,11 @@ class _LoadingState extends State<Loading> {
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child:  Center(
-          child: Text("Loading...", style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white70
-          ),)
+          child: Text(loading ? "Loading..." : time, 
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white70
+            ),)
           )
       )
     ));
