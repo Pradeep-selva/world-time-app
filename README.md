@@ -7,7 +7,7 @@ A simple app to get times of places from around the around.
 - Scan QR code <br/>
   <img src="./assets/qr.png" width="200" alt="qr code">
   ***
-  <img src="./assets/banner.jpg" width="400" alt="qr code">
+  <img src="./assets/banner.jpg" width="700" alt="qr code">
 
 ## Built using
 
