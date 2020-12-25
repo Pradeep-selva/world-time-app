@@ -2,12 +2,10 @@
 
 A simple app to get times of places from around the around.
 
-- [download here](https://webapp.diawi.com/install/zTByyV)
+- [download here](https://webapp.diawi.com/install/zTByyV) <br/>
   (or)
-- Scan QR code
-  ![qr](./assets/qr.png)
-
-![banner](./assets/banner.jpg)
+- Scan QR code <br/>
+  <img src="./assets/banner.jpg" width="50" alt="qr code">
 
 ## Built using
 
