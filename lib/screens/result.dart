@@ -12,6 +12,9 @@ class _ResultState extends State<Result> {
 
   @override
   Widget build(BuildContext context){
+    result = ModalRoute.of(context).settings.arguments;
+    print(result);
+
     return Scaffold(
       backgroundColor: Colors.grey[850],
       appBar: AppBar(
@@ -24,7 +27,7 @@ class _ResultState extends State<Result> {
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child:  Center(
-          child: Text("Showing time", style: TextStyle(
+          child: Text("${result["time"]}", style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white70
           ))
