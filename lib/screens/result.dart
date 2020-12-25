@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_time_app/services/ResultProps.dart';
 
 class Result extends StatefulWidget{
 
@@ -13,25 +14,59 @@ class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context){
     result = ModalRoute.of(context).settings.arguments;
-    print(result);
+    ResultProps props = ResultProps(time: result["time"]);
+    props.getBackgroundsFromTime();
 
     return Scaffold(
       backgroundColor: Colors.grey[850],
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: props.backgroundColor,
+        child: Icon(
+          Icons.location_on, 
+          color: Colors.white70,
+          ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/choose-location');
+        },
+      ),
       appBar: AppBar(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: props.backgroundColor,
         title: Text("Time", 
         style: TextStyle(
+          color: props.titleColor,
           fontWeight: FontWeight.bold
         )),
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/${props.backgroundImage}"),
+            fit: BoxFit.cover,
+          )
+        ),
+        child: Padding(
         padding: EdgeInsets.all(20.0),
         child:  Center(
-          child: Text("${result["time"]}", style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white70
-          ))
-          )
+          child: Column (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "${result["location"]}",
+                style: TextStyle(
+                  color: props.foregroundColor,
+                  letterSpacing: 4.0,
+                  fontSize: 30
+                ),
+              ),
+              Text("${props.time}", style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: props.foregroundColor,
+                fontSize: 50.0
+              ))
+            ],    
+           )
+        )
+      ),
       )
     );
   }

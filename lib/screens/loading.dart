@@ -27,7 +27,8 @@ class _LoadingState extends State<Loading> {
 
       time = instance.time;
       Navigator.pushReplacementNamed(context, '/result', arguments: {
-        'time': time
+        'time': time,
+        'location': instance.location
       });
     } finally {
       this.toggleLoading();

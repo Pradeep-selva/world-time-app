@@ -12,8 +12,9 @@ class GetTime {
   Future<void> fetchTime() async {
     http.Response response = await http.get('http://worldtimeapi.org/api/timezone/$url');
     Map timeString = jsonDecode(response.body);
+    String curTime = timeString['datetime'].toString().split("+")[0];
 
-    DateTime timeData = DateTime.parse(timeString['datetime']);
+    DateTime timeData = DateTime.parse(curTime);
 
     time = timeData.toString();
   }
