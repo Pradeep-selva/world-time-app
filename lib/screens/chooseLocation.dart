@@ -22,6 +22,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
   void fetchTimezones() async {
     Timezones instance = Timezones();
 
+    while(timezones.length == 0){
         try {
         await instance.getTimezones();
         
@@ -33,6 +34,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
       } catch (error) {
         print("ERROR: $error");
       }
+    }
   }
 
   void onSubmitSearch(String location) {

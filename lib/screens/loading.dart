@@ -28,20 +28,22 @@ class _LoadingState extends State<Loading> {
 
     print(props);
 
-    try {
-      print(props["url"].toString().split('/'));
-      String location = props["url"].toString().split('/').last;
-      GetTime instance = GetTime(url: props["url"], flagUrl: "", location: location);
-      await instance.fetchTime();
-      print(instance.time);
+    while(time.isEmpty) {
+      try {
+        print(props["url"].toString().split('/'));
+        String location = props["url"].toString().split('/').last;
+        GetTime instance = GetTime(url: props["url"], flagUrl: "", location: location);
+        await instance.fetchTime();
+        print(instance.time);
 
-      time = instance.time;
-      Navigator.pushReplacementNamed(context, '/result', arguments: {
-        'time': time,
-        'location': instance.location
-      });
-    } catch (error) {
-      print("ERROR: $error");
+        time = instance.time;
+        Navigator.pushReplacementNamed(context, '/result', arguments: {
+          'time': time,
+          'location': instance.location
+        });
+      } catch (error) {
+        print("ERROR: $error");
+      }
     }
   }
 
