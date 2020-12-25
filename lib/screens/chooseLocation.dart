@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:world_time_app/services/Timezones.dart';
 
 class ChooseLocation extends StatefulWidget{
@@ -76,8 +77,29 @@ class _ChooseLocationState extends State<ChooseLocation> {
               ),
             ],
           ),
-        ) 
-      :Text("fetching..."),
-    );
+        ) : Padding(
+              padding: EdgeInsets.all(20.0),
+              child:  Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Please be patient while we fetch the list of timezones...",
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 30.0),
+                    SpinKitDoubleBounce(
+                      color: Colors.white70,
+                      size: 60.0,
+                    )
+                  ],
+                )
+              )
+            ),
+          );
   }
 }

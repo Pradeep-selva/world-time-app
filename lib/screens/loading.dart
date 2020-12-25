@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:world_time_app/services/GetTime.dart';
 
 class Loading extends StatefulWidget{
@@ -51,12 +52,24 @@ class _LoadingState extends State<Loading> {
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child:  Center(
-          child: Text("Loading...", 
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white70
-            ),)
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Getting The Time...",
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0
+                )
+              ),
+              SizedBox(height: 30.0),
+              SpinKitDoubleBounce(
+                color: Colors.white70,
+                size: 60.0,
+              )
+            ],
           )
+        )
       )
     ));
   }
