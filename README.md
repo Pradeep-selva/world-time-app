@@ -5,9 +5,9 @@ A simple app to get times of places from around the around.
 - [download here](https://webapp.diawi.com/install/zTByyV)
   (or)
 - Scan QR code
-  ![qr](./assets/qr.jpg)
+  ![qr](./assets/qr.png)
 
-![banner](./assets.banner.jpg)
+![banner](./assets/banner.jpg)
 
 ## Built using
 
