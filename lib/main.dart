@@ -11,8 +11,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context){
     return MaterialApp(
       routes: {
-        '/': (context) => Loading(),
-        '/choose-location': (context) => ChooseLocation(),
+        '/': (context) => ChooseLocation(),
+        '/loading': (context) => Loading(),
         '/result': (context) => Result()
       },
     );

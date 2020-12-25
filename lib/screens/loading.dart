@@ -15,11 +15,20 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
     this.getTime();
   }
 
   void getTime() async {
     this.toggleLoading();
+
+    Map props = ModalRoute.of(context).settings.arguments;
+
+    print(props);
 
     try {
       GetTime instance = GetTime(url: "Asia/Kolkata", flagUrl: "", location: "Kolkata");

@@ -23,20 +23,9 @@ class _ChooseLocationState extends State<ChooseLocation> {
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
-        child:  Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.location_on, color: Colors.white70,),
-              SizedBox(width: 20.0),
-              Text("Choose your location", style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white70,
-              )
-             )
-            ],
-          )
-          )
+        child: RaisedButton(child: Text("location"), onPressed: (){
+          Navigator.pushNamed(context, '/loading');
+        },) 
       )
     );
   }

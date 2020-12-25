@@ -10,13 +10,17 @@ class GetTime {
   GetTime({this.url, this.location, this.flagUrl});
 
   Future<void> fetchTime() async {
-    http.Response response = await http.get('http://worldtimeapi.org/api/timezone/$url');
-    Map timeString = jsonDecode(response.body);
-    String curTime = timeString['datetime'].toString().split("+")[0];
+    try {
+      http.Response response = await http.get('http://worldtimeapi.org/api/timezone/$url');
+      Map timeString = jsonDecode(response.body);
+      String curTime = timeString['datetime'].toString().split("+")[0];
 
-    DateTime timeData = DateTime.parse(curTime);
+      DateTime timeData = DateTime.parse(curTime);
 
-    time = timeData.toString();
+      time = timeData.toString();
+    } catch (error) {
+      print("ERROR: $error");
+    }
   }
 }
 

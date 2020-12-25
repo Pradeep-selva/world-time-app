@@ -26,7 +26,7 @@ class _ResultState extends State<Result> {
           color: Colors.white70,
           ),
         onPressed: () {
-          Navigator.pushNamed(context, '/choose-location');
+          Navigator.pushNamed(context, '/');
         },
       ),
       appBar: AppBar(
