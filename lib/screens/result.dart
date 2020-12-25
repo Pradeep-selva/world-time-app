@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:world_time_app/services/ResultProps.dart';
+import 'dart:ui' as ui;
 
 class Result extends StatefulWidget{
 
@@ -10,12 +11,28 @@ class Result extends StatefulWidget{
 class _ResultState extends State<Result> {
 
   Map result = {};
+  ResultProps props;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    setState(() {
+      result = ModalRoute.of(context).settings.arguments;
+      props = ResultProps(time: result["time"]);
+    });   
+
+    props.getBackgroundsFromTime();
+  }
 
   @override
   Widget build(BuildContext context){
-    result = ModalRoute.of(context).settings.arguments;
-    ResultProps props = ResultProps(time: result["time"]);
-    props.getBackgroundsFromTime();
+    
 
     return Scaffold(
       backgroundColor: Colors.grey[850],
@@ -55,14 +72,38 @@ class _ResultState extends State<Result> {
                 style: TextStyle(
                   color: props.foregroundColor,
                   letterSpacing: 4.0,
-                  fontSize: 30
-                ),
+                  fontSize: 30,
+                  shadows: <Shadow>[
+                  Shadow(
+                    offset: Offset(1.0, 1.0),
+                    blurRadius: 3.0,
+                    color: Colors.grey[800],
+                  ),
+                  Shadow(
+                    offset: Offset(1.5, 1.0),
+                    blurRadius: 8.0,
+                    color: Colors.grey[800],
+                  )
+                ],),
               ),
               Text("${props.time}", style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: props.foregroundColor,
-                fontSize: 50.0
-              ))
+                fontSize: 50.0,
+                shadows: <Shadow>[
+                  Shadow(
+                    offset: Offset(1.0, 1.0),
+                    blurRadius: 3.0,
+                    color: Colors.grey[800],
+                  ),
+                  Shadow(
+                    offset: Offset(1.5, 1.0),
+                    blurRadius: 8.0,
+                    color: Colors.grey[800],
+                  ),
+                ],
+              )),
+              
             ],    
            )
         )

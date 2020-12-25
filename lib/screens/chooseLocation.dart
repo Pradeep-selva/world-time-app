@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_time_app/services/Timezones.dart';
 
 class ChooseLocation extends StatefulWidget{
 
@@ -8,7 +9,35 @@ class ChooseLocation extends StatefulWidget{
 
 class _ChooseLocationState extends State<ChooseLocation> {
 
-  String location = "";
+  List<dynamic> timezones = [];
+
+  @override
+  void initState(){
+    super.initState();
+    this.fetchTimezones();
+  }
+
+  void fetchTimezones() async {
+    Timezones instance = Timezones();
+
+    try {
+      await instance.getTimezones();
+      
+      setState(() {
+        timezones = instance.timezones;
+      });
+
+      print(timezones);
+    } catch (error) {
+      print("ERROR: $error");
+    }
+  }
+
+  void onChooseLocation(String location) {
+    Navigator.pushNamed(context, '/loading', arguments: {
+      'url': location
+    });
+  }
 
   @override
   Widget build(BuildContext context){
@@ -21,12 +50,34 @@ class _ChooseLocationState extends State<ChooseLocation> {
           fontWeight: FontWeight.bold
         )),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: RaisedButton(child: Text("location"), onPressed: (){
-          Navigator.pushNamed(context, '/loading');
-        },) 
-      )
+      body: timezones.length > 0 ? ListView.builder(
+          itemCount: timezones.length,
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          itemBuilder: (context, index) => Column(
+            children: [
+              SizedBox(height: 10.0),
+              ListTile(
+                leading: Icon(
+                  Icons.location_on_rounded,
+                  color: Colors.white70,
+                ),
+                key: Key(index.toString()),
+                title: Text(
+                  timezones[index], 
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                tileColor: Colors.grey[800],
+                onTap: (){
+                  onChooseLocation(timezones[index]);
+                },
+              ),
+            ],
+          ),
+        ) 
+      :Text("fetching..."),
     );
   }
 }

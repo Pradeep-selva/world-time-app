@@ -9,7 +9,6 @@ class Loading extends StatefulWidget{
 
 class _LoadingState extends State<Loading> {
 
-  bool loading = false;
   String time = "";
 
   @override
@@ -24,29 +23,26 @@ class _LoadingState extends State<Loading> {
   }
 
   void getTime() async {
-    this.toggleLoading();
-
     Map props = ModalRoute.of(context).settings.arguments;
 
     print(props);
 
     try {
-      GetTime instance = GetTime(url: "Asia/Kolkata", flagUrl: "", location: "Kolkata");
+      print(props["url"].toString().split('/'));
+      String location = props["url"].toString().split('/').last;
+      GetTime instance = GetTime(url: props["url"], flagUrl: "", location: location);
       await instance.fetchTime();
+      print(instance.time);
 
       time = instance.time;
       Navigator.pushReplacementNamed(context, '/result', arguments: {
         'time': time,
         'location': instance.location
       });
-    } finally {
-      this.toggleLoading();
+    } catch (error) {
+      print("ERROR: $error");
     }
   }
-
-  void toggleLoading() => setState((){
-    loading = !loading;
-  });
 
   @override
   Widget build(BuildContext context){
@@ -55,7 +51,7 @@ class _LoadingState extends State<Loading> {
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child:  Center(
-          child: Text(loading ? "Loading..." : time, 
+          child: Text("Loading...", 
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white70

@@ -22,9 +22,11 @@ class ResultProps {
       backgroundImage = "evening.jpg";
       backgroundColor = Colors.yellow[700];
       titleColor = Colors.grey[850];
+      foregroundColor = Colors.yellow;
     } else {
       backgroundImage = "night.jpg";
       backgroundColor = Colors.indigo[900];
+      foregroundColor = Colors.white70;
     }
 
     time = DateFormat.jm().format(DateTime.parse(time));
