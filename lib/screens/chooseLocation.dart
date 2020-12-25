@@ -73,8 +73,10 @@ class _ChooseLocationState extends State<ChooseLocation> {
           ): null,
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          centerTitle: true,
           backgroundColor: Colors.grey[800],
-          title: Text("Choose Your Location", 
+          title: Text("Choose Your Location",
+          textAlign: TextAlign.center, 
           style: TextStyle(
             fontWeight: FontWeight.bold
           )),
@@ -95,7 +97,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
                       style: TextStyle(
                         color: Colors.white
                       ),
-                      autofocus: true,
+                      autofocus: false,
                       decoration: InputDecoration(
                         focusColor: Colors.white70,
                         icon: Icon(

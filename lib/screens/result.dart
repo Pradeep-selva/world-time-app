@@ -48,6 +48,7 @@ class _ResultState extends State<Result> {
       ),
       appBar: AppBar(
         backgroundColor: props.backgroundColor,
+        centerTitle: true,
         title: Text("Time", 
         style: TextStyle(
           color: props.titleColor,
